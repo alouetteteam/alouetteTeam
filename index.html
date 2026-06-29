@@ -4,13 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AlouetteTeam 🎀🕊️✨ - Komunitas Seru & Kawaii</title>
-
-    <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-
     <style>
         /* ===== RESET & ROOT ===== */
         *,
@@ -62,7 +59,6 @@
             position: relative;
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 12px;
         }
@@ -76,7 +72,7 @@
             border: 3px solid #ffeef4;
         }
 
-        /* ===== LOADING SCREEN ===== */
+        /* ===== LOADING ===== */
         #loading {
             position: fixed;
             inset: 0;
@@ -115,7 +111,7 @@
             animation: pulseDots 1s infinite alternate;
         }
 
-        /* ===== PARTICLE CANVAS ===== */
+        /* ===== PARTICLES ===== */
         #particles-canvas {
             position: fixed;
             inset: 0;
@@ -362,17 +358,8 @@
                 left: 120%;
             }
         }
-        @keyframes bounceSoft {
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-12px);
-            }
-        }
 
-        /* ===== 1. HERO ===== */
+        /* ===== HERO ===== */
         #hero {
             padding: 160px 0 100px;
             text-align: center;
@@ -513,7 +500,7 @@
             box-shadow: 0 20px 44px rgba(255, 158, 187, 0.70);
         }
 
-        /* ===== 2. ABOUT ===== */
+        /* ===== ABOUT ===== */
         #about .glass-card {
             max-width: 960px;
             margin: 0 auto;
@@ -548,7 +535,7 @@
             font-weight: 800;
         }
 
-        /* ===== 3. SOCIAL MEDIA ===== */
+        /* ===== SOCIAL MEDIA ===== */
         .social-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -629,7 +616,6 @@
             filter: brightness(1.10);
         }
 
-        /* Warna sosial */
         .sc-tt {
             border-color: #ff9ebb;
         }
@@ -693,7 +679,7 @@
             text-align: center;
         }
 
-        /* ===== 4. FEATURES ===== */
+        /* ===== FEATURES (KENAPA BERGABUNG?) ===== */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -709,6 +695,13 @@
             transition: all 0.4s var(--transition-bounce);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
+            height: auto;
+            min-height: unset;
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
         }
         .feature-card:hover {
             transform: translateY(-14px) scale(1.03);
@@ -728,6 +721,7 @@
             border: 4px solid #fff;
             box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
             transition: transform 0.5s var(--transition-bounce);
+            flex-shrink: 0;
         }
         .feature-card:hover .f-icon {
             transform: scale(1.25) rotate(12deg);
@@ -738,12 +732,17 @@
             font-size: 1.5rem;
             font-weight: 800;
             margin-bottom: 10px;
+            line-height: 1.3;
         }
         .f-desc {
             font-size: 1.05rem;
             font-weight: 600;
             color: var(--text-soft);
             line-height: 1.6;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            max-width: 100%;
         }
 
         /* Warna masing-masing feature */
@@ -790,7 +789,7 @@
             color: #d45b33;
         }
 
-        /* ===== 5. FOOTER ===== */
+        /* ===== FOOTER ===== */
         footer {
             background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(12px);
@@ -890,6 +889,13 @@
             }
             .feature-card {
                 padding: 32px 20px;
+            }
+            .f-title {
+                font-size: 1.3rem;
+            }
+            .f-desc {
+                font-size: 0.95rem;
+                line-height: 1.5;
             }
             .section-title {
                 font-size: 2.4rem;
@@ -1003,10 +1009,11 @@
                 font-size: 2rem;
             }
             .f-title {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
             .f-desc {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
+                line-height: 1.5;
             }
             .about-text {
                 font-size: 0.95rem;
@@ -1061,7 +1068,7 @@
         <div class="load-dots">• • •</div>
     </div>
 
-    <!-- ===== PARTICLES CANVAS ===== -->
+    <!-- ===== PARTICLES ===== -->
     <canvas id="particles-canvas"></canvas>
 
     <!-- ===== FLOATING DECOR ===== -->
@@ -1199,7 +1206,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- 4. WHY JOIN -->
+    <!-- 4. WHY JOIN (KENAPA BERGABUNG?) -->
     <!-- ============================================================ -->
     <section id="why-join">
         <div class="container">
@@ -1377,4 +1384,4 @@
     </script>
 
 </body>
-</html>
+    </html>
