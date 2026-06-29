@@ -1,1 +1,1380 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AlouetteTeam 🎀🕊️✨ - Komunitas Seru & Kawaii</title>
 
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ===== RESET & ROOT ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --white: #ffffff;
+            --pastel-blue: #c4dfff;
+            --pastel-pink: #ffd1e6;
+            --pastel-purple: #e2cbf7;
+            --pastel-yellow: #fff3b0;
+            --pastel-mint: #c6f7d6;
+            --pastel-peach: #ffd9b3;
+            --text-dark: #4a3a5e;
+            --text-soft: #6b5c7d;
+            --text-light: #a892b0;
+            --shadow-soft: rgba(255, 158, 187, 0.25);
+            --shadow-glow: rgba(255, 101, 163, 0.30);
+            --border-cute: 4px dashed;
+            --radius-xl: 48px;
+            --radius-lg: 32px;
+            --radius-md: 24px;
+            --transition-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size:24px"><text y="24">💖</text></svg>'), auto;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #fff5f9;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(255, 209, 230, 0.30) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(196, 223, 255, 0.30) 0%, transparent 40%),
+                radial-gradient(circle at 50% 90%, rgba(226, 203, 247, 0.25) 0%, transparent 35%),
+                repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(255, 209, 230, 0.10) 60px, rgba(255, 209, 230, 0.10) 120px);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            min-height: 100vh;
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ffeef4;
+            border-radius: 20px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #ff9ebb, #c4dfff, #c6f7d6);
+            border-radius: 20px;
+            border: 3px solid #ffeef4;
+        }
+
+        /* ===== LOADING SCREEN ===== */
+        #loading {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: linear-gradient(145deg, #ffd1e6, #c4dfff, #e2cbf7);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.9s ease, visibility 0.9s ease;
+        }
+        #loading.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .load-mascot {
+            font-size: 6rem;
+            animation: floatY 0.9s infinite alternate ease-in-out;
+        }
+        .load-text {
+            margin-top: 24px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: #fff;
+            text-shadow: 0 4px 0 #ff65a3, 0 8px 20px rgba(255, 101, 163, 0.35);
+            letter-spacing: 3px;
+            animation: pulseText 1.2s infinite alternate;
+        }
+        .load-dots {
+            margin-top: 12px;
+            font-size: 2rem;
+            letter-spacing: 8px;
+            color: #fff;
+            animation: pulseDots 1s infinite alternate;
+        }
+
+        /* ===== PARTICLE CANVAS ===== */
+        #particles-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ===== FLOATING DECOR ===== */
+        .float-decor {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            font-size: 2.6rem;
+            opacity: 0.50;
+            animation: floatY 12s infinite alternate ease-in-out;
+            user-select: none;
+        }
+        .fd-1 {
+            top: 8%;
+            left: 3%;
+            animation-duration: 10s;
+            font-size: 3.2rem;
+        }
+        .fd-2 {
+            top: 20%;
+            right: 4%;
+            animation-duration: 14s;
+            animation-delay: 2s;
+        }
+        .fd-3 {
+            top: 48%;
+            left: 1.5%;
+            font-size: 3.6rem;
+            animation-duration: 11s;
+            animation-delay: 4s;
+        }
+        .fd-4 {
+            bottom: 22%;
+            right: 2%;
+            animation-duration: 13s;
+            animation-delay: 1s;
+        }
+        .fd-5 {
+            bottom: 10%;
+            left: 6%;
+            font-size: 3rem;
+            animation-duration: 9s;
+            animation-delay: 3s;
+        }
+        .fd-6 {
+            top: 60%;
+            right: 6%;
+            font-size: 2.8rem;
+            animation-duration: 15s;
+            animation-delay: 5s;
+        }
+
+        .float-cloud {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: 60px;
+            pointer-events: none;
+            z-index: 0;
+            box-shadow: 0 12px 40px rgba(255, 158, 187, 0.12);
+            animation: driftCloud 50s infinite linear;
+        }
+        .fc-1 {
+            width: 180px;
+            height: 56px;
+            top: 12%;
+            left: -200px;
+            animation-duration: 45s;
+        }
+        .fc-2 {
+            width: 240px;
+            height: 64px;
+            bottom: 25%;
+            left: -280px;
+            animation-duration: 55s;
+            animation-delay: 8s;
+        }
+        .fc-3 {
+            width: 140px;
+            height: 44px;
+            top: 55%;
+            left: -160px;
+            animation-duration: 40s;
+            animation-delay: 15s;
+        }
+
+        /* ===== UTILITY ===== */
+        .container {
+            width: 100%;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 28px;
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            padding: 100px 0 80px;
+            position: relative;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #fff0f6, #ffffff);
+            padding: 8px 28px;
+            border-radius: 40px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: #ff65a3;
+            border: 3px solid #ff9ebb;
+            box-shadow: 0 6px 20px rgba(255, 158, 187, 0.25);
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .section-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-shadow: 2px 2px 0 #fff;
+            line-height: 1.2;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        /* ===== GLASS CARD ===== */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.78);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: var(--border-cute) #ff9ebb;
+            border-radius: var(--radius-xl);
+            padding: 44px 48px;
+            box-shadow: 0 20px 50px rgba(238, 180, 255, 0.30), inset 0 0 30px rgba(255, 255, 255, 0.80);
+            transition: transform 0.4s var(--transition-bounce), box-shadow 0.4s ease;
+            position: relative;
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 60px rgba(238, 180, 255, 0.40);
+        }
+
+        /* ===== REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px) scale(0.96);
+            transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .reveal-d1 {
+            transition-delay: 0.08s;
+        }
+        .reveal-d2 {
+            transition-delay: 0.16s;
+        }
+        .reveal-d3 {
+            transition-delay: 0.24s;
+        }
+        .reveal-d4 {
+            transition-delay: 0.32s;
+        }
+        .reveal-d5 {
+            transition-delay: 0.40s;
+        }
+        .reveal-d6 {
+            transition-delay: 0.48s;
+        }
+
+        /* ===== KEYFRAMES ===== */
+        @keyframes floatY {
+            0% {
+                transform: translateY(0) rotate(-6deg);
+            }
+            100% {
+                transform: translateY(-30px) rotate(6deg);
+            }
+        }
+        @keyframes driftCloud {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(100vw + 400px));
+            }
+        }
+        @keyframes pulseText {
+            0% {
+                opacity: 0.70;
+                transform: scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.04);
+            }
+        }
+        @keyframes pulseDots {
+            0% {
+                opacity: 0.4;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+        @keyframes wiggle {
+            0%,
+            100% {
+                transform: rotate(-4deg);
+            }
+            50% {
+                transform: rotate(4deg);
+            }
+        }
+        @keyframes sparklePop {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -140%) scale(1.6) rotate(200deg);
+                opacity: 0;
+            }
+        }
+        @keyframes shine {
+            0% {
+                left: -120%;
+            }
+            100% {
+                left: 120%;
+            }
+        }
+        @keyframes bounceSoft {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        /* ===== 1. HERO ===== */
+        #hero {
+            padding: 160px 0 100px;
+            text-align: center;
+        }
+
+        .hero-logo {
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 28px;
+            background: linear-gradient(145deg, #fff, #ffeef4, #c4dfff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 16px 48px rgba(255, 158, 187, 0.35), 0 0 0 10px rgba(255, 255, 255, 0.60), 0 0 0 22px rgba(255, 209, 230, 0.35);
+            border: 6px dashed #ff9ebb;
+            animation: floatY 3.5s infinite alternate ease-in-out;
+            position: relative;
+        }
+        .hero-logo i {
+            font-size: 5.2rem;
+            color: #ff65a3;
+            filter: drop-shadow(0 6px 12px rgba(255, 101, 163, 0.30));
+        }
+        .hero-logo::after {
+            content: "✨";
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 2.2rem;
+            animation: pulseText 1.4s infinite alternate;
+        }
+        .hero-logo::before {
+            content: "🌸";
+            position: absolute;
+            bottom: 6px;
+            left: 6px;
+            font-size: 2rem;
+            animation: floatY 2.8s infinite alternate;
+        }
+
+        .hero-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 5.6rem;
+            font-weight: 800;
+            color: #fff;
+            text-shadow:
+                4px 4px 0 #ff9ebb,
+                8px 8px 0 #badaff,
+                12px 12px 0 #e2cbf7,
+                16px 16px 25px rgba(0, 0, 0, 0.08);
+            letter-spacing: 2px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-sub {
+            max-width: 780px;
+            margin: 0 auto 42px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 18px 36px;
+            border-radius: 50px;
+            border: 3px solid #e2cbf7;
+            box-shadow: 0 10px 28px rgba(226, 203, 247, 0.30);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #5a4b70;
+            line-height: 1.8;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .cute-btn {
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            padding: 18px 48px;
+            border-radius: 60px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            border: 4px solid #fff;
+            transition: all 0.35s var(--transition-bounce);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+            z-index: 1;
+        }
+        .cute-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.55), transparent);
+            transform: skewX(-22deg);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .cute-btn:hover::after {
+            animation: shine 1.2s infinite;
+        }
+        .cute-btn:hover {
+            transform: translateY(-8px) scale(1.04);
+        }
+        .cute-btn:active {
+            transform: translateY(2px) scale(0.94);
+        }
+        .cute-btn>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-wa {
+            background: linear-gradient(145deg, #c4dfff, #9ec3ff);
+            color: #1e4b85;
+            box-shadow: 0 14px 34px rgba(158, 195, 255, 0.50);
+        }
+        .btn-wa:hover {
+            background: linear-gradient(145deg, #a8cdff, #7aaeff);
+            box-shadow: 0 20px 44px rgba(158, 195, 255, 0.70);
+        }
+
+        .btn-tt {
+            background: linear-gradient(145deg, #ffd1e6, #ff9ebb);
+            color: #851e44;
+            box-shadow: 0 14px 34px rgba(255, 158, 187, 0.50);
+        }
+        .btn-tt:hover {
+            background: linear-gradient(145deg, #ffbada, #ff7fa7);
+            box-shadow: 0 20px 44px rgba(255, 158, 187, 0.70);
+        }
+
+        /* ===== 2. ABOUT ===== */
+        #about .glass-card {
+            max-width: 960px;
+            margin: 0 auto;
+            border-color: #c4dfff;
+            background: rgba(255, 255, 255, 0.88);
+            padding: 52px 56px;
+        }
+        #about .glass-card::before {
+            content: "💌";
+            position: absolute;
+            top: -28px;
+            left: 28px;
+            font-size: 3.8rem;
+            animation: floatY 4s infinite alternate;
+        }
+        #about .glass-card::after {
+            content: "🧸";
+            position: absolute;
+            bottom: -28px;
+            right: 28px;
+            font-size: 3.8rem;
+            animation: floatY 5s infinite alternate-reverse;
+        }
+        .about-text {
+            font-size: 1.25rem;
+            line-height: 2.0;
+            color: #5a4b70;
+            font-weight: 600;
+        }
+        .about-text strong {
+            color: #ff65a3;
+            font-weight: 800;
+        }
+
+        /* ===== 3. SOCIAL MEDIA ===== */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 36px;
+            margin-top: 12px;
+        }
+
+        .social-card {
+            border-radius: var(--radius-xl);
+            padding: 36px 38px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-width: 4px;
+            border-style: dashed;
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s var(--transition-bounce);
+        }
+        .social-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: #fff;
+        }
+
+        .social-top {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin-bottom: 24px;
+        }
+        .social-icon {
+            width: 76px;
+            height: 76px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.4rem;
+            color: #fff;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+            border: 3px solid #fff;
+            flex-shrink: 0;
+        }
+        .social-name {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .social-handle {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-soft);
+        }
+
+        .btn-social {
+            width: 100%;
+            justify-content: center;
+            padding: 16px 24px;
+            font-size: 1.1rem;
+            border-radius: var(--radius-md);
+            color: #fff;
+            border: 3px solid #fff;
+            font-weight: 800;
+            text-decoration: none;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s var(--transition-bounce);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            font-family: 'Fredoka', sans-serif;
+        }
+        .btn-social:hover {
+            transform: scale(1.04);
+            filter: brightness(1.10);
+        }
+
+        /* Warna sosial */
+        .sc-tt {
+            border-color: #ff9ebb;
+        }
+        .sc-tt .social-icon,
+        .sc-tt .btn-social {
+            background: linear-gradient(145deg, #ff0050, #00f2fe);
+        }
+        .sc-tt:hover {
+            box-shadow: 0 16px 40px rgba(255, 0, 80, 0.25);
+        }
+
+        .sc-wa {
+            border-color: #c6f7d6;
+        }
+        .sc-wa .social-icon,
+        .sc-wa .btn-social {
+            background: linear-gradient(145deg, #25D366, #128C7E);
+        }
+        .sc-wa:hover {
+            box-shadow: 0 16px 40px rgba(37, 211, 102, 0.25);
+        }
+
+        .sc-wc {
+            border-color: #c4dfff;
+        }
+        .sc-wc .social-icon,
+        .sc-wc .btn-social {
+            background: linear-gradient(145deg, #00b2ff, #0055cc);
+        }
+        .sc-wc:hover {
+            box-shadow: 0 16px 40px rgba(0, 178, 255, 0.25);
+        }
+
+        .sc-yt {
+            border-color: #ffb3b3;
+        }
+        .sc-yt .social-icon,
+        .sc-yt .btn-social {
+            background: linear-gradient(145deg, #FF0000, #b30000);
+        }
+        .sc-yt:hover {
+            box-shadow: 0 16px 40px rgba(255, 0, 0, 0.25);
+        }
+
+        .notice-banner {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #fff0f6, #fff5f9);
+            border: var(--border-cute) #ff65a3;
+            border-radius: var(--radius-lg);
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: #b53c74;
+            box-shadow: 0 8px 24px rgba(255, 101, 163, 0.15);
+            animation: pulseText 2.4s infinite alternate ease-in-out;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        /* ===== 4. FEATURES ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.88);
+            border: var(--border-cute);
+            border-radius: var(--radius-xl);
+            padding: 40px 28px 36px;
+            text-align: center;
+            transition: all 0.4s var(--transition-bounce);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .feature-card:hover {
+            transform: translateY(-14px) scale(1.03);
+            background: #ffffff;
+            box-shadow: 0 20px 44px rgba(0, 0, 0, 0.06);
+        }
+
+        .f-icon {
+            width: 88px;
+            height: 88px;
+            margin: 0 auto 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.6rem;
+            border: 4px solid #fff;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+            transition: transform 0.5s var(--transition-bounce);
+        }
+        .feature-card:hover .f-icon {
+            transform: scale(1.25) rotate(12deg);
+        }
+
+        .f-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .f-desc {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-soft);
+            line-height: 1.6;
+        }
+
+        /* Warna masing-masing feature */
+        .fc-1 {
+            border-color: #a8cdff;
+        }
+        .fc-1 .f-icon {
+            background: #e8f1ff;
+            color: #4a90e2;
+        }
+        .fc-2 {
+            border-color: #ffbada;
+        }
+        .fc-2 .f-icon {
+            background: #ffe8f4;
+            color: #ff65a3;
+        }
+        .fc-3 {
+            border-color: #e2cbf7;
+        }
+        .fc-3 .f-icon {
+            background: #f3e8ff;
+            color: #8b5cf6;
+        }
+        .fc-4 {
+            border-color: #fff3b0;
+        }
+        .fc-4 .f-icon {
+            background: #fffde8;
+            color: #e6b800;
+        }
+        .fc-5 {
+            border-color: #c6f7d6;
+        }
+        .fc-5 .f-icon {
+            background: #e8fff5;
+            color: #20aa67;
+        }
+        .fc-6 {
+            border-color: #ffc2b3;
+        }
+        .fc-6 .f-icon {
+            background: #fff0e8;
+            color: #d45b33;
+        }
+
+        /* ===== 5. FOOTER ===== */
+        footer {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 6px dashed #ff9ebb;
+            padding: 56px 0 44px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            margin-top: 20px;
+        }
+        .footer-brand {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: #ff65a3;
+            text-shadow: 2px 2px 0 #ffd1e6;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .footer-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-soft);
+            margin: 4px 0;
+        }
+        .footer-deco {
+            margin-top: 20px;
+            font-size: 2rem;
+            letter-spacing: 16px;
+            animation: floatY 5s infinite alternate ease-in-out;
+            opacity: 0.80;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-title {
+                font-size: 4.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 70px 0 56px;
+            }
+            .container {
+                padding: 0 18px;
+            }
+            .hero-title {
+                font-size: 3.4rem;
+            }
+            .hero-sub {
+                font-size: 1.05rem;
+                padding: 14px 20px;
+            }
+            .hero-logo {
+                width: 140px;
+                height: 140px;
+            }
+            .hero-logo i {
+                font-size: 4.2rem;
+            }
+            .btn-group {
+                gap: 16px;
+            }
+            .cute-btn {
+                padding: 14px 30px;
+                font-size: 1rem;
+                gap: 10px;
+                width: 100%;
+                justify-content: center;
+            }
+            .social-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .social-card {
+                padding: 28px 24px;
+            }
+            .social-top {
+                gap: 16px;
+            }
+            .social-icon {
+                width: 64px;
+                height: 64px;
+                font-size: 2rem;
+            }
+            .social-name {
+                font-size: 1.3rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .feature-card {
+                padding: 32px 20px;
+            }
+            .section-title {
+                font-size: 2.4rem;
+            }
+            #about .glass-card {
+                padding: 32px 24px;
+            }
+            #about .glass-card::before,
+            #about .glass-card::after {
+                font-size: 2.6rem;
+            }
+            #about .glass-card::before {
+                top: -20px;
+                left: 16px;
+            }
+            #about .glass-card::after {
+                bottom: -20px;
+                right: 16px;
+            }
+            .about-text {
+                font-size: 1.05rem;
+            }
+            .glass-card {
+                padding: 32px 24px;
+            }
+            .notice-banner {
+                font-size: 0.95rem;
+                padding: 14px 20px;
+                gap: 12px;
+            }
+            .float-decor {
+                display: none;
+            }
+            .float-cloud {
+                display: none;
+            }
+            .footer-brand {
+                font-size: 2rem;
+            }
+            .footer-text {
+                font-size: 1rem;
+            }
+            .footer-deco {
+                font-size: 1.6rem;
+                letter-spacing: 12px;
+            }
+            #hero {
+                padding: 120px 0 60px;
+            }
+            .btn-social {
+                font-size: 1rem;
+                padding: 14px 18px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero-title {
+                font-size: 2.6rem;
+            }
+            .hero-sub {
+                font-size: 0.95rem;
+                padding: 12px 16px;
+            }
+            .hero-logo {
+                width: 110px;
+                height: 110px;
+            }
+            .hero-logo i {
+                font-size: 3.4rem;
+            }
+            .hero-logo::after {
+                font-size: 1.6rem;
+                top: 4px;
+                right: 4px;
+            }
+            .hero-logo::before {
+                font-size: 1.4rem;
+                bottom: 4px;
+                left: 4px;
+            }
+            .section-title {
+                font-size: 1.9rem;
+            }
+            .cute-btn {
+                font-size: 0.9rem;
+                padding: 12px 20px;
+            }
+            .glass-card {
+                padding: 24px 16px;
+            }
+            .social-card {
+                padding: 20px 16px;
+            }
+            .social-icon {
+                width: 54px;
+                height: 54px;
+                font-size: 1.6rem;
+            }
+            .social-name {
+                font-size: 1.1rem;
+            }
+            .social-handle {
+                font-size: 0.9rem;
+            }
+            .feature-card {
+                padding: 24px 16px;
+            }
+            .f-icon {
+                width: 72px;
+                height: 72px;
+                font-size: 2rem;
+            }
+            .f-title {
+                font-size: 1.2rem;
+            }
+            .f-desc {
+                font-size: 0.95rem;
+            }
+            .about-text {
+                font-size: 0.95rem;
+                line-height: 1.8;
+            }
+            #about .glass-card::before,
+            #about .glass-card::after {
+                font-size: 2rem;
+            }
+            #about .glass-card::before {
+                top: -16px;
+                left: 12px;
+            }
+            #about .glass-card::after {
+                bottom: -16px;
+                right: 12px;
+            }
+            .notice-banner {
+                font-size: 0.85rem;
+                padding: 12px 14px;
+                flex-direction: column;
+                gap: 6px;
+            }
+            footer {
+                padding: 40px 0 30px;
+            }
+            .footer-brand {
+                font-size: 1.6rem;
+            }
+            .footer-text {
+                font-size: 0.9rem;
+            }
+            .footer-deco {
+                font-size: 1.2rem;
+                letter-spacing: 10px;
+            }
+            #hero {
+                padding: 100px 0 40px;
+            }
+            section {
+                padding: 50px 0 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== LOADING ===== -->
+    <div id="loading">
+        <div class="load-mascot">🎀🕊️✨</div>
+        <div class="load-text">AlouetteTeam</div>
+        <div class="load-dots">• • •</div>
+    </div>
+
+    <!-- ===== PARTICLES CANVAS ===== -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ===== FLOATING DECOR ===== -->
+    <span class="float-decor fd-1">🌸</span>
+    <span class="float-decor fd-2">🍓</span>
+    <span class="float-decor fd-3">🧸</span>
+    <span class="float-decor fd-4">💖</span>
+    <span class="float-decor fd-5">🍡</span>
+    <span class="float-decor fd-6">☁️</span>
+
+    <!-- ===== FLOATING CLOUDS ===== -->
+    <div class="float-cloud fc-1"></div>
+    <div class="float-cloud fc-2"></div>
+    <div class="float-cloud fc-3"></div>
+
+    <!-- ============================================================ -->
+    <!-- 1. HERO -->
+    <!-- ============================================================ -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-logo">
+                <i class="fa-solid fa-dove"></i>
+            </div>
+            <h1 class="hero-title">AlouetteTeam</h1>
+            <p class="hero-sub">
+                Tempat berkumpulnya komunitas yang seru, aktif, dan saling mendukung.
+                Yuk bergabung dan jadi bagian dari <strong>AlouetteTeam</strong>! 🕊️✨🌸💙☁️
+            </p>
+            <div class="btn-group">
+                <a href="https://chat.whatsapp.com/IIOmAwyl2yk0kxCKKevO3Q?s=sh&p=a&ilr=4" target="_blank" class="cute-btn btn-wa">
+                    <i class="fa-brands fa-whatsapp"></i> Gabung Grup WA
+                </a>
+                <a href="https://tiktok.com/@alouette.team" target="_blank" class="cute-btn btn-tt">
+                    <i class="fa-brands fa-tiktok"></i> Follow TikTok
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 2. ABOUT -->
+    <!-- ============================================================ -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-badge">🌸 Kenalan Yuk! 🌸</span>
+                <h2 class="section-title">Tentang Kami</h2>
+            </div>
+            <div class="glass-card reveal">
+                <p class="about-text">
+                    Halo semuanya! 🎀 Selamat datang di <strong>AlouetteTeam</strong>, rumah kedua bagi kamu yang sedang mencari tempat seru untuk berbagi keceriaan, hobi, dan cerita hangat setiap harinya. Kami percaya bahwa sebuah komunitas bukan hanya tentang seberapa banyak anggotanya, melainkan tentang seberapa erat kebersamaan di dalamnya. Di AlouetteTeam, kita semua adalah keluarga! 💖
+                    <br /><br />
+                    Di sini, kamu bisa menemukan teman mengobrol yang asyik, saling memberikan dukungan positif, dan mengikuti berbagai kegiatan seru bersama. Kami selalu terbuka untuk menyambut siapa saja dengan tangan terbuka dan senyuman paling manis. Yuk, warnai harimu bersama kami dan mari tumbuh bersama menjadi komunitas yang selalu menginspirasi dan membawa kebahagiaan! ☁️✨🍓
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 3. SOCIAL MEDIA -->
+    <!-- ============================================================ -->
+    <section id="social-media">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-badge">📱 Terhubung Bersama 📱</span>
+                <h2 class="section-title">Social Media</h2>
+            </div>
+
+            <div class="social-grid">
+
+                <!-- TikTok -->
+                <div class="social-card sc-tt reveal reveal-d1">
+                    <div class="social-top">
+                        <div class="social-icon"><i class="fa-brands fa-tiktok"></i></div>
+                        <div>
+                            <div class="social-name">TikTok</div>
+                            <div class="social-handle">@alouette.team</div>
+                        </div>
+                    </div>
+                    <a href="https://tiktok.com/@alouette.team" target="_blank" class="btn-social">
+                        Kunjungi TikTok ✨
+                    </a>
+                </div>
+
+                <!-- WhatsApp Group -->
+                <div class="social-card sc-wa reveal reveal-d2">
+                    <div class="social-top">
+                        <div class="social-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div>
+                            <div class="social-name">WhatsApp Group</div>
+                            <div class="social-handle">Grup Chat Utama</div>
+                        </div>
+                    </div>
+                    <a href="https://chat.whatsapp.com/IIOmAwyl2yk0kxCKKevO3Q?s=sh&p=a&ilr=4" target="_blank" class="btn-social">
+                        Masuk Grup Chat 💬
+                    </a>
+                </div>
+
+                <!-- Notice -->
+                <div class="notice-banner reveal reveal-d3">
+                    <i class="fa-solid fa-heart-circle-exclamation"></i>
+                    <span>Jika tautan grup diatur ulang, tautan akan segera diperbarui yaa! 🎀</span>
+                </div>
+
+                <!-- WhatsApp Channel -->
+                <div class="social-card sc-wc reveal reveal-d4">
+                    <div class="social-top">
+                        <div class="social-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                        <div>
+                            <div class="social-name">WhatsApp Channel</div>
+                            <div class="social-handle">Informasi &amp; Update</div>
+                        </div>
+                    </div>
+                    <a href="https://whatsapp.com/channel/0029VbDRw1GIiRosPksrrs2J" target="_blank" class="btn-social">
+                        Ikuti Saluran 📢
+                    </a>
+                </div>
+
+                <!-- YouTube -->
+                <div class="social-card sc-yt reveal reveal-d5">
+                    <div class="social-top">
+                        <div class="social-icon"><i class="fa-brands fa-youtube"></i></div>
+                        <div>
+                            <div class="social-name">YouTube</div>
+                            <div class="social-handle">@AlouetteTeam</div>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/@AlouetteTeam" target="_blank" class="btn-social">
+                        Tonton Keseruan 🎬
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 4. WHY JOIN -->
+    <!-- ============================================================ -->
+    <section id="why-join">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-badge">💖 Banyak Benefitnya! 💖</span>
+                <h2 class="section-title">Kenapa Bergabung?</h2>
+            </div>
+
+            <div class="features-grid">
+
+                <div class="feature-card fc-1 reveal reveal-d1">
+                    <div class="f-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3 class="f-title">Komunitas Aktif</h3>
+                    <p class="f-desc">Nggak ada kata sepi di sini! Selalu ada obrolan seru setiap waktu. ✨</p>
+                </div>
+
+                <div class="feature-card fc-2 reveal reveal-d2">
+                    <div class="f-icon"><i class="fa-solid fa-face-smile-wink"></i></div>
+                    <h3 class="f-title">Ramah untuk Semua</h3>
+                    <p class="f-desc">Semua orang disambut penuh kasih sayang tanpa memandang latar belakang. 🎀</p>
+                </div>
+
+                <div class="feature-card fc-3 reveal reveal-d3">
+                    <div class="f-icon"><i class="fa-solid fa-user-group"></i></div>
+                    <h3 class="f-title">Banyak Teman Baru</h3>
+                    <p class="f-desc">Perluas pertemananmu dan temukan sahabat sejati yang satu frekuensi! 💖</p>
+                </div>
+
+                <div class="feature-card fc-4 reveal reveal-d4">
+                    <div class="f-icon"><i class="fa-solid fa-star"></i></div>
+                    <h3 class="f-title">Event Seru</h3>
+                    <p class="f-desc">Ikuti berbagai mini-event mingguan, game bareng, yang bikin betah! 🎮</p>
+                </div>
+
+                <div class="feature-card fc-5 reveal reveal-d5">
+                    <div class="f-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <h3 class="f-title">Suasana Positif</h3>
+                    <p class="f-desc">Lingkungan aman, suportif, dan bebas toksisitas demi kenyamanan bersama. ☁️</p>
+                </div>
+
+                <div class="feature-card fc-6 reveal reveal-d6">
+                    <div class="f-icon"><i class="fa-solid fa-seedling"></i></div>
+                    <h3 class="f-title">Selalu Berkembang</h3>
+                    <p class="f-desc">Kami terus mendengar saran agar AlouetteTeam jadi tempat terbaik untukmu! 🌱</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 5. FOOTER -->
+    <!-- ============================================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer-brand">AlouetteTeam</div>
+            <p class="footer-text">© 2026 AlouetteTeam. Terima kasih sudah mampir kesini.</p>
+            <p class="footer-text">Semoga harimu dipenuhi keajaiban! 🌸✨</p>
+            <div class="footer-deco">🎀🕊️💖☁️</div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================================================ -->
+    <script>
+        // ===== 1. LOADING =====
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loading');
+            setTimeout(() => {
+                loader.classList.add('hide');
+            }, 1000);
+        });
+
+        // ===== 2. CLICK SPARKLE =====
+        const sparkles = ['✨', '💖', '🌸', '☁️', '⭐', '🎀', '🍓', '🍡', '🦋', '🌈'];
+        document.addEventListener('click', (e) => {
+            const el = document.createElement('span');
+            el.style.cssText = `
+                position: fixed;
+                left: ${e.pageX}px;
+                top: ${e.pageY}px;
+                font-size: 2rem;
+                pointer-events: none;
+                z-index: 99999;
+                animation: sparklePop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                user-select: none;
+            `;
+            el.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 750);
+        });
+
+        // ===== 3. PARTICLES CANVAS =====
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const emojis = ['✨', '🌸', '💖', '🎀', '☁️', '🦋'];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = 14 + Math.random() * 16;
+                this.speedY = 0.15 + Math.random() * 0.35;
+                this.speedX = (Math.random() * 0.3 - 0.15);
+                this.emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                this.rot = Math.random() * 360;
+                this.rotSpeed = (Math.random() * 1.6 - 0.8);
+            }
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                this.rot += this.rotSpeed;
+                if (this.y < -60) {
+                    this.y = canvas.height + 60;
+                    this.x = Math.random() * canvas.width;
+                }
+                if (this.x < -60 || this.x > canvas.width + 60) {
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rot * Math.PI / 180);
+                ctx.font = `${this.size}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.globalAlpha = 0.30;
+                ctx.fillText(this.emoji, 0, 0);
+                ctx.restore();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 45; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // ===== 4. SCROLL REVEAL =====
+        const reveals = document.querySelectorAll('.reveal');
+
+        function checkReveal() {
+            const trigger = window.innerHeight * 0.88;
+            reveals.forEach(el => {
+                if (el.getBoundingClientRect().top < trigger) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', checkReveal);
+        window.addEventListener('resize', checkReveal);
+        checkReveal();
+    </script>
+
+</body>
+</html>
